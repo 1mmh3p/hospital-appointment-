@@ -1,0 +1,10 @@
+﻿@model hastanerandevu.Models.Entities.hastaneler
+
+<option value="">---Select a Hospital---</option>
+@if (ViewBag.Hastanelist != null)
+{
+    foreach (var item in ViewBag.Hastanelist)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

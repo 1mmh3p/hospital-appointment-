@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hastaneModelStoreContainer" CdmEntityContainer="hastaneEntities">
+    <EntitySetMapping Name="doktorlar">
+      <EntityTypeMapping TypeName="hastaneModel.doktorlar">
+        <MappingFragment StoreEntitySet="doktorlar">
+          <ScalarProperty Name="DOKTORID" ColumnName="DOKTORID" />
+          <ScalarProperty Name="DOKTORAD" ColumnName="DOKTORAD" />
+          <ScalarProperty Name="HASTANEID" ColumnName="HASTANEID" />
+          <ScalarProperty Name="KLINIKID" ColumnName="KLINIKID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hastaneler">
+      <EntityTypeMapping TypeName="hastaneModel.hastaneler">
+        <MappingFragment StoreEntitySet="hastaneler">
+          <ScalarProperty Name="HASTANEID" ColumnName="HASTANEID" />
+          <ScalarProperty Name="SEHIRID" ColumnName="SEHIRID" />
+          <ScalarProperty Name="ILCEID" ColumnName="ILCEID" />
+          <ScalarProperty Name="HASTANEAD" ColumnName="HASTANEAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ilceler">
+      <EntityTypeMapping TypeName="hastaneModel.ilceler">
+        <MappingFragment StoreEntitySet="ilceler">
+          <ScalarProperty Name="ILCEID" ColumnName="ILCEID" />
+          <ScalarProperty Name="SEHIRID" ColumnName="SEHIRID" />
+          <ScalarProperty Name="ILCEAD" ColumnName="ILCEAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klinikler">
+      <EntityTypeMapping TypeName="hastaneModel.klinikler">
+        <MappingFragment StoreEntitySet="klinikler">
+          <ScalarProperty Name="KLINIKID" ColumnName="KLINIKID" />
+          <ScalarProperty Name="KLINIKAD" ColumnName="KLINIKAD" />
+          <ScalarProperty Name="HASTANEID" ColumnName="HASTANEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personel">
+      <EntityTypeMapping TypeName="hastaneModel.personel">
+        <MappingFragment StoreEntitySet="personel">
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="PUsername" ColumnName="PUsername" />
+          <ScalarProperty Name="PPasword" ColumnName="PPasword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="randevular">
+      <EntityTypeMapping TypeName="hastaneModel.randevular">
+        <MappingFragment StoreEntitySet="randevular">
+          <ScalarProperty Name="RANDEVUID" ColumnName="RANDEVUID" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="DOKTORID" ColumnName="DOKTORID" />
+          <ScalarProperty Name="RANDEVUTARIH" ColumnName="RANDEVUTARIH" />
+          <ScalarProperty Name="RANDEVUSAAT" ColumnName="RANDEVUSAAT" />
+          <ScalarProperty Name="RANDEVUTUR" ColumnName="RANDEVUTUR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sehirler">
+      <EntityTypeMapping TypeName="hastaneModel.sehirler">
+        <MappingFragment StoreEntitySet="sehirler">
+          <ScalarProperty Name="SEHIRID" ColumnName="SEHIRID" />
+          <ScalarProperty Name="SEHIRAD" ColumnName="SEHIRAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="hastaneModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tur">
+      <EntityTypeMapping TypeName="hastaneModel.tur">
+        <MappingFragment StoreEntitySet="tur">
+          <ScalarProperty Name="RANDEVUTUR" ColumnName="RANDEVUTUR" />
+          <ScalarProperty Name="RANDEVUAD" ColumnName="RANDEVUAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="hastaneModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="USERTC" ColumnName="USERTC" />
+          <ScalarProperty Name="USERAD" ColumnName="USERAD" />
+          <ScalarProperty Name="USERSOYAD" ColumnName="USERSOYAD" />
+          <ScalarProperty Name="USERDOGUM" ColumnName="USERDOGUM" />
+          <ScalarProperty Name="USERSİFRE" ColumnName="USERSİFRE" />
+          <ScalarProperty Name="AILEHID" ColumnName="AILEHID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

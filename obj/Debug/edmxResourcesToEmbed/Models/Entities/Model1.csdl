@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hastaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="doktorlar">
+    <Key>
+      <PropertyRef Name="DOKTORID" />
+    </Key>
+    <Property Name="DOKTORID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOKTORAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HASTANEID" Type="Int32" Nullable="false" />
+    <Property Name="KLINIKID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="hastaneler" Relationship="Self.FK_doktorlar_hastaneler" FromRole="doktorlar" ToRole="hastaneler" />
+    <NavigationProperty Name="klinikler" Relationship="Self.FK_doktorlar_klinikler" FromRole="doktorlar" ToRole="klinikler" />
+    <NavigationProperty Name="randevular" Relationship="Self.FK_randevular_doktorlar" FromRole="doktorlar" ToRole="randevular" />
+    <NavigationProperty Name="user" Relationship="Self.FK_user_doktorlar" FromRole="doktorlar" ToRole="user" />
+  </EntityType>
+  <EntityType Name="hastaneler">
+    <Key>
+      <PropertyRef Name="HASTANEID" />
+    </Key>
+    <Property Name="HASTANEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEHIRID" Type="Int32" Nullable="false" />
+    <Property Name="ILCEID" Type="Int32" Nullable="false" />
+    <Property Name="HASTANEAD" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="doktorlar" Relationship="Self.FK_doktorlar_hastaneler" FromRole="hastaneler" ToRole="doktorlar" />
+    <NavigationProperty Name="ilceler" Relationship="Self.FK_hastaneler_ilceler" FromRole="hastaneler" ToRole="ilceler" />
+    <NavigationProperty Name="sehirler" Relationship="Self.FK_hastaneler_sehirler" FromRole="hastaneler" ToRole="sehirler" />
+    <NavigationProperty Name="klinikler" Relationship="Self.FK_klinikler_hastaneler" FromRole="hastaneler" ToRole="klinikler" />
+  </EntityType>
+  <EntityType Name="ilceler">
+    <Key>
+      <PropertyRef Name="ILCEID" />
+    </Key>
+    <Property Name="ILCEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEHIRID" Type="Int32" Nullable="false" />
+    <Property Name="ILCEAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="hastaneler" Relationship="Self.FK_hastaneler_ilceler" FromRole="ilceler" ToRole="hastaneler" />
+    <NavigationProperty Name="sehirler" Relationship="Self.FK_ilceler_sehirler" FromRole="ilceler" ToRole="sehirler" />
+  </EntityType>
+  <EntityType Name="klinikler">
+    <Key>
+      <PropertyRef Name="KLINIKID" />
+    </Key>
+    <Property Name="KLINIKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KLINIKAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HASTANEID" Type="Int32" />
+    <NavigationProperty Name="doktorlar" Relationship="Self.FK_doktorlar_klinikler" FromRole="klinikler" ToRole="doktorlar" />
+    <NavigationProperty Name="hastaneler" Relationship="Self.FK_klinikler_hastaneler" FromRole="klinikler" ToRole="hastaneler" />
+  </EntityType>
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PPasword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="randevular">
+    <Key>
+      <PropertyRef Name="RANDEVUID" />
+    </Key>
+    <Property Name="RANDEVUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERID" Type="Int32" Nullable="false" />
+    <Property Name="DOKTORID" Type="Int32" Nullable="false" />
+    <Property Name="RANDEVUTARIH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RANDEVUSAAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RANDEVUTUR" Type="Int32" />
+    <NavigationProperty Name="doktorlar" Relationship="Self.FK_randevular_doktorlar" FromRole="randevular" ToRole="doktorlar" />
+    <NavigationProperty Name="tur" Relationship="Self.FK_randevular_tur" FromRole="randevular" ToRole="tur" />
+    <NavigationProperty Name="user" Relationship="Self.FK_randevular_user" FromRole="randevular" ToRole="user" />
+  </EntityType>
+  <EntityType Name="sehirler">
+    <Key>
+      <PropertyRef Name="SEHIRID" />
+    </Key>
+    <Property Name="SEHIRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEHIRAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="hastaneler" Relationship="Self.FK_hastaneler_sehirler" FromRole="sehirler" ToRole="hastaneler" />
+    <NavigationProperty Name="ilceler" Relationship="Self.FK_ilceler_sehirler" FromRole="sehirler" ToRole="ilceler" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tur">
+    <Key>
+      <PropertyRef Name="RANDEVUTUR" />
+    </Key>
+    <Property Name="RANDEVUTUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RANDEVUAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="randevular" Relationship="Self.FK_randevular_tur" FromRole="tur" ToRole="randevular" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERTC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USERAD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USERSOYAD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USERDOGUM" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="USERSİFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AILEHID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="doktorlar" Relationship="Self.FK_user_doktorlar" FromRole="user" ToRole="doktorlar" />
+    <NavigationProperty Name="randevular" Relationship="Self.FK_randevular_user" FromRole="user" ToRole="randevular" />
+  </EntityType>
+  <Association Name="FK_doktorlar_hastaneler">
+    <End Role="hastaneler" Type="Self.hastaneler" Multiplicity="1" />
+    <End Role="doktorlar" Type="Self.doktorlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hastaneler">
+        <PropertyRef Name="HASTANEID" />
+      </Principal>
+      <Dependent Role="doktorlar">
+        <PropertyRef Name="HASTANEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_doktorlar_klinikler">
+    <End Role="klinikler" Type="Self.klinikler" Multiplicity="1" />
+    <End Role="doktorlar" Type="Self.doktorlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klinikler">
+        <PropertyRef Name="KLINIKID" />
+      </Principal>
+      <Dependent Role="doktorlar">
+        <PropertyRef Name="KLINIKID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_randevular_doktorlar">
+    <End Role="doktorlar" Type="Self.doktorlar" Multiplicity="1" />
+    <End Role="randevular" Type="Self.randevular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doktorlar">
+        <PropertyRef Name="DOKTORID" />
+      </Principal>
+      <Dependent Role="randevular">
+        <PropertyRef Name="DOKTORID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_doktorlar">
+    <End Role="doktorlar" Type="Self.doktorlar" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doktorlar">
+        <PropertyRef Name="DOKTORID" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="AILEHID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hastaneler_ilceler">
+    <End Role="ilceler" Type="Self.ilceler" Multiplicity="1" />
+    <End Role="hastaneler" Type="Self.hastaneler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilceler">
+        <PropertyRef Name="ILCEID" />
+      </Principal>
+      <Dependent Role="hastaneler">
+        <PropertyRef Name="ILCEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hastaneler_sehirler">
+    <End Role="sehirler" Type="Self.sehirler" Multiplicity="1" />
+    <End Role="hastaneler" Type="Self.hastaneler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sehirler">
+        <PropertyRef Name="SEHIRID" />
+      </Principal>
+      <Dependent Role="hastaneler">
+        <PropertyRef Name="SEHIRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_klinikler_hastaneler">
+    <End Role="hastaneler" Type="Self.hastaneler" Multiplicity="0..1" />
+    <End Role="klinikler" Type="Self.klinikler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hastaneler">
+        <PropertyRef Name="HASTANEID" />
+      </Principal>
+      <Dependent Role="klinikler">
+        <PropertyRef Name="HASTANEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ilceler_sehirler">
+    <End Role="sehirler" Type="Self.sehirler" Multiplicity="1" />
+    <End Role="ilceler" Type="Self.ilceler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sehirler">
+        <PropertyRef Name="SEHIRID" />
+      </Principal>
+      <Dependent Role="ilceler">
+        <PropertyRef Name="SEHIRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_randevular_tur">
+    <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+    <End Role="randevular" Type="Self.randevular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tur">
+        <PropertyRef Name="RANDEVUTUR" />
+      </Principal>
+      <Dependent Role="randevular">
+        <PropertyRef Name="RANDEVUTUR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_randevular_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="randevular" Type="Self.randevular" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="randevular">
+        <PropertyRef Name="USERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hastaneEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="doktorlar" EntityType="Self.doktorlar" />
+    <EntitySet Name="hastaneler" EntityType="Self.hastaneler" />
+    <EntitySet Name="ilceler" EntityType="Self.ilceler" />
+    <EntitySet Name="klinikler" EntityType="Self.klinikler" />
+    <EntitySet Name="personel" EntityType="Self.personel" />
+    <EntitySet Name="randevular" EntityType="Self.randevular" />
+    <EntitySet Name="sehirler" EntityType="Self.sehirler" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tur" EntityType="Self.tur" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="FK_doktorlar_hastaneler" Association="Self.FK_doktorlar_hastaneler">
+      <End Role="hastaneler" EntitySet="hastaneler" />
+      <End Role="doktorlar" EntitySet="doktorlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_doktorlar_klinikler" Association="Self.FK_doktorlar_klinikler">
+      <End Role="klinikler" EntitySet="klinikler" />
+      <End Role="doktorlar" EntitySet="doktorlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_randevular_doktorlar" Association="Self.FK_randevular_doktorlar">
+      <End Role="doktorlar" EntitySet="doktorlar" />
+      <End Role="randevular" EntitySet="randevular" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_doktorlar" Association="Self.FK_user_doktorlar">
+      <End Role="doktorlar" EntitySet="doktorlar" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hastaneler_ilceler" Association="Self.FK_hastaneler_ilceler">
+      <End Role="ilceler" EntitySet="ilceler" />
+      <End Role="hastaneler" EntitySet="hastaneler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hastaneler_sehirler" Association="Self.FK_hastaneler_sehirler">
+      <End Role="sehirler" EntitySet="sehirler" />
+      <End Role="hastaneler" EntitySet="hastaneler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_klinikler_hastaneler" Association="Self.FK_klinikler_hastaneler">
+      <End Role="hastaneler" EntitySet="hastaneler" />
+      <End Role="klinikler" EntitySet="klinikler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ilceler_sehirler" Association="Self.FK_ilceler_sehirler">
+      <End Role="sehirler" EntitySet="sehirler" />
+      <End Role="ilceler" EntitySet="ilceler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_randevular_tur" Association="Self.FK_randevular_tur">
+      <End Role="tur" EntitySet="tur" />
+      <End Role="randevular" EntitySet="randevular" />
+    </AssociationSet>
+    <AssociationSet Name="FK_randevular_user" Association="Self.FK_randevular_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="randevular" EntitySet="randevular" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
